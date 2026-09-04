@@ -1,53 +1,31 @@
 # DependencyLens
 
-> Dependency metadata inspection helpers for Python projects.
+> Inspect Python dependency declarations without adding runtime dependencies.
 
-[![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?style=flat-square)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-MIT-111111?style=flat-square)](LICENSE)
+DependencyLens is a small utility for extracting and organizing dependency metadata from Python project requirements.
 
-DependencyLens is a small, dependency-free library for inspecting and normalizing Python dependency declarations.
+## Why it exists
+
+Dependency files are often the first place to look when reviewing a Python project. DependencyLens keeps that inspection lightweight and scriptable.
 
 ## Features
 
 - Parse dependency requirement strings
 - Extract package names
 - Group entries by package name
-- Detect duplicate package entries
-- Dependency-free runtime
-- Simple Python API
-
-## Installation
-
-```bash
-pip install dependencylens
-```
+- Detect duplicate package declarations
+- Zero runtime dependencies
 
 ## Example
 
 ```python
-from dependencylens import extract_package_name
+from dependencylens import parse
 
-name = extract_package_name("requests>=2.31,<3")
-print(name)
+result = parse(["requests>=2.0", "httpx==0.27"])
+print(result)
 ```
 
-Use the package's public API and type signatures for the complete set of supported helpers.
-
-## Design
-
-DependencyLens deliberately focuses on **metadata inspection**, not package installation or environment mutation.
-
-```text
-requirement strings
-        ↓
-    parse / normalize
-        ↓
- structured metadata
-        ↓
-   your tooling
-```
-
-This makes it suitable as a building block for dependency audits, project analysis and release tooling.
+See the source and tests for the exact supported API.
 
 ## Development
 
@@ -57,8 +35,8 @@ python -m pytest
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+MIT. See `LICENSE`.
 
-Built by **Meduuv**.
+## Author
 
-[More projects](https://github.com/meduuv?tab=repositories) · [guns.lol/meduu](https://guns.lol/meduu)
+Built by **Medu** · https://guns.lol/meduu
